@@ -1,6 +1,9 @@
 import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
+import { errorHandler } from "../utils/error.js";
+import jwt from 'jsonwebtoken';
 
+//sign up controller
 export const signup = async (req, res, next) => {
     const { username, email, password } = req.body;
     //Encrypt the password using bcryptjs
@@ -14,3 +17,38 @@ export const signup = async (req, res, next) => {
         next(error);
     }
 };
+
+//sign in controller
+export const signin = async (req, res, next) => {
+    const { email, password } = req.body;
+    try {
+        //check if email is correct or not
+        const validUser = await User.findOne({ email });
+        if (!validUser) return next(errorHandler(404, 'User not found'));
+
+        // if email exists, check valid passcode
+        const validPassword = bcryptjs.compareSync(password, validUser.password)
+        if (!validPassword) return next(errorHandler(401, 'wrong credentials'))
+
+        //add token to the cookie of the browser (token is a hash value of the unique things of user)
+        //JWS_SECRET something unique about your project
+        const token = jwt.sign( { id:validUser._id }, process.env.JWT_SECRET);
+
+        //Remove the passcode after checking it
+        const { password: hashedPassword, ...rest } = validUser._doc;
+
+        //add expiry date
+        const expiryDate = new Date(Date.now() + 3600000); // 1 hour
+
+        //add token to cookie
+        res
+            .cookie('access_token', token, {httpOnly: true, expires:
+            expiryDate})
+            .status(200)
+            .json(rest)
+        //httpOnly: true prevents third party applicatin to modiy the cockie
+
+    } catch (error) {
+        next(error) //handles error
+    }
+}
