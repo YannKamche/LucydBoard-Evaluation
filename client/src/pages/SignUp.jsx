@@ -125,7 +125,6 @@ const SignUp = () => {
         <p className='text-red-700 mt-5'>{error && 'Something went wrong'}</p>
       </div>
        
-
       <div className='hidden lg:flex justify-center items-center w-[500px] h-[550px] mr-3 relative' style={{ backgroundImage: `url(${background})`}}>
         <div className='relative w-[60%] h-[60%] border-white border bg-color border-solid rounded-[30px]' style={{backgroundColor: '#9889F5'}}>
           <div className='absolute bottom-0 translate-x-10'>
