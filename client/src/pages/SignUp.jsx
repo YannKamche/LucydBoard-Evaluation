@@ -55,12 +55,12 @@ const SignUp = () => {
           
 }
   return (
-     <div className='w-full h-screen flex justify-center items-center'>
-     <div className='flex justify-center items-center flex-row w-full'>
+     <div className='w-full h-screen flex justify-center items-center p-4'>
+     <div className='flex justify-center items-center flex-row w-full  max-w-5xl shadow-2xl rounded-3xl'>
 
       <div className='flex flex-col items-center justify-center gap-2 max-lg:w-full lg:w-1/2 '>
         {/* Logo */}
-        <img src={lucydBLogo} alt="logo" className='mb-3'/>
+        <img src={lucydBLogo} alt="logo" className='mt-5 mb-3'/>
 
         {/* titles */}
         <div>
@@ -130,7 +130,7 @@ const SignUp = () => {
         <p className='text-red-700 mt-5'>{error && 'Something went wrong'}</p>
       </div>
        
-      <div className='hidden lg:flex justify-center items-center w-[500px] h-[550px] mr-3 relative' style={{ backgroundImage: `url(${background})`}}>
+      <div className='hidden lg:flex justify-center items-center w-[500px] h-[580px] -mr-3 relative rounded-br-3xl rounded-tr-3xl' style={{ backgroundImage: `url(${background})`}}>
         <div className='relative w-[60%] h-[60%] border-white border bg-color border-solid rounded-[30px]' style={{backgroundColor: '#9889F5'}}>
           <div className='absolute bottom-0 translate-x-10'>
             <img src={man} alt="man" width={600} />
