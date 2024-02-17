@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { lucydBLogo } from '../assets'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { facebookLogo, googleLogo, profile, lock, icon, man, background } from '../assets'
 
 const SignUp = () => {
+
+  //initialize useNavigate
+  const navigate = useNavigate();
 
   //loading effect
   const [error, setError] = useState(false);
@@ -43,7 +46,8 @@ const SignUp = () => {
         setError(true);
         return;
       }
-      navigate('/sign-in');
+      navigate('/sign-in')
+      
     } catch (error) {
       setLoading(false);
       setError(true);
