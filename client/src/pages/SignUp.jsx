@@ -18,8 +18,9 @@ const SignUp = () => {
       setFormData({
         ...formData, 
         [e.target.id]: e.target.value
-    })
+    });
   }
+  console.log(formData)
 
   //function to handle sumbit
   const handleSubmit = async (e) => {
