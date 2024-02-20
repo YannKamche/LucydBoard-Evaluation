@@ -4,14 +4,23 @@ import { lucydBLogo, women } from '../assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { facebookLogo, googleLogo, profile, lock, icon, man, background } from '../assets'
 
+import { signInStart, signInFailure, signInSuccess  } from '../redux/user/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 const SignUp = () => {
 
   //initialize navigate
   const navigate = useNavigate();
 
-  //loading effect
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false)
+  //initialize dispatch
+  const dispatch = useDispatch();
+
+  // //loading and error using useEFfect
+  // const [error, setError] = useState(false);
+  // const [loading, setLoading] = useState(false)
+
+  //loadinng and error using dispatch
+  const { loading , error } = useSelector(state => state.user)
 
   //State to manage form data
   const [formData, setFormData] = useState({})
@@ -29,8 +38,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(signInStart())
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
@@ -40,16 +48,16 @@ const SignUp = () => {
       });
       const data = await res.json();
       console.log(data);
-      setLoading(false);
       
       if (data.success === false) {
-        setError(true);
+        dispatch(signInFailure(data))
         return;
       }
+
+      dispatch(signInSuccess(data))
       navigate('/user-dashboard');
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      dispatch(signInFailure(error));
     }
           
 }
@@ -111,7 +119,7 @@ const SignUp = () => {
 
 
           <p className='flex text-sm gap-8'>Dont have an account? <Link to='/sign-up'><span className='font-bold underline'>Sign Up</span></Link></p>
-          <p className='text-red-700 mt-5'>{error && 'Something went wrong'}</p>
+          <p className='text-red-700 mt-5'>{error ? error.message || 'Something went wrong!' : ''}</p>
         </div>
         
         <div className='hidden lg:flex justify-center items-center w-[500px] h-[570px] -mr-2 relative rounded-br-3xl rounded-tr-3xl' style={{ backgroundImage: `url(${background})`}}>
