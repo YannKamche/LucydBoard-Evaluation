@@ -113,17 +113,19 @@ const SignUp = () => {
               onChange={handleChange}
               />
             </div>
-          </form>
-        </div>
 
+            
         {/* Buttons */}
-        <div className='flex flex-col gap-2 max-md:w-4/5 md:w-1/2 mt-4'>
+        <div className='flex flex-col gap-2 mt-4'>
           <button disabled={loading} className='login-button max-md:w-1/2 md:w-1/2 cursor-pointer'>
             {loading ? 'Loading...': 'Sign Up Now'}
           </button>
          
           <button className='button flex justify-center items-center gap-2 disabled:opacity-80'><img src={googleLogo} alt="google" /> Sign Up with<span className='font-bold'>Google</span></button>
           <button className='button flex justify-center items-center gap-2'><img src={facebookLogo} alt="facebook" /> Sign Up with <span className='font-bold'>Facebook</span></button>
+        </div>
+
+          </form>
         </div>
 
         <p className='flex text-sm gap-8'>Have an account already? <Link to='/sign-in'><span className='font-bold underline'>Login</span></Link></p>
