@@ -70,46 +70,45 @@ const SignUp = () => {
           {/* Form */}
           <div className='max-md:w-4/5 md:w-1/2'>
             <form onSubmit={handleSubmit} action="" className='mt-3 flex flex-col gap-2 w-full'>
-              <div className='w-full relative'>
-                <div className='absolute top-3 left-3'>
-                  <img src={profile} alt="profile" />
-                </div>
-                <input 
-                className='input'
-                type="text"
-                name='username'
-                id='username'
-                placeholder='Username' 
-                onChange={handleChange}                                   
-                />
-                
+               <div className='relative w-full'>
+              <div className='absolute top-3 left-3'>
+                <img src={profile} alt="profile" />
               </div>
+              <input 
+              className='input'
+              type="email"
+              name='email'
+              id='email'
+              placeholder='Email' 
+              onChange={handleChange}
+              />
+            </div>
 
-              <div className='relative w-full'>
-                <div className='absolute top-3 left-3'>
-                  <img src={profile} alt="profile" />
-                </div>
-                <input 
-                className='input'
-                type="email"
-                name='email'
-                id='email'
-                placeholder='Email' 
-                onChange={handleChange}
-                />
+             <div className='relative w-full'>
+              <div className='absolute top-3 left-3'>
+                <img src={lock} alt="lock" />
+              </div>
+              <input 
+              className='input'
+              type="password"
+              name='password'
+              id='password'
+              placeholder='Password' 
+              onChange={handleChange}
+              />
+            </div>
+              {/* Buttons */}
+              <div className='flex flex-col gap-2 mt-4'>
+                <button disabled={loading} className='login-button max-md:w-1/2 md:w-1/2 cursor-pointer'>
+                  {loading ? 'Loading...': 'Sign In'}
+                </button>
+              
+                <button className='button flex justify-center items-center gap-2 disabled:opacity-80'><img src={googleLogo} alt="google" /> Log in with<span className='font-bold'>Google</span></button>
+                <button className='button flex justify-center items-center gap-2'><img src={facebookLogo} alt="facebook" />Log in with <span className='font-bold'>Facebook</span></button>
               </div>
             </form>
           </div>
 
-          {/* Buttons */}
-          <div className='flex flex-col gap-2 max-md:w-4/5 md:w-1/2 mt-4'>
-            <button disabled={loading} className='login-button max-md:w-1/2 md:w-1/2 cursor-pointer'>
-              {loading ? 'Loading...': 'Sign In'}
-            </button>
-          
-            <button className='button flex justify-center items-center gap-2 disabled:opacity-80'><img src={googleLogo} alt="google" /> Log in with<span className='font-bold'>Google</span></button>
-            <button className='button flex justify-center items-center gap-2'><img src={facebookLogo} alt="facebook" />Log in with <span className='font-bold'>Facebook</span></button>
-          </div>
 
           <p className='flex text-sm gap-8'>Dont have an account? <Link to='/sign-up'><span className='font-bold underline'>Sign Up</span></Link></p>
           <p className='text-red-700 mt-5'>{error && 'Something went wrong'}</p>
