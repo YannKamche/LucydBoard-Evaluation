@@ -52,3 +52,63 @@ export const signin = async (req, res, next) => {
         next(error) //handles error
     }
 }
+
+
+// The google function handles Google sign-in authentication
+export const google = async (req, res, next) => {
+  try {
+    // Find user by email in the database
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      // If user exists, generate JWT token
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      // Omit password from user data
+      const { password: hashedPassword, ...rest } = user._doc;
+      // Set expiration date for cookie
+      const expiryDate = new Date(Date.now() + 3600000); // 1 hour
+      // Set access_token cookie and respond with user data
+      res
+        .cookie('access_token', token, {
+          httpOnly: true,
+          expires: expiryDate,
+        })
+        .status(200)
+        .json(rest);
+    } else {
+      // If user doesn't exist, generate a random password
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+      // Hash the generated password
+      const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+      // Create a new user with generated username and email, and hashed password
+      const newUser = new User({
+        username:
+          req.body.name.split(' ').join('').toLowerCase() +
+          Math.random().toString(36).slice(-8),
+        email: req.body.email,
+        password: hashedPassword,
+        profilePicture: req.body.photo,
+      });
+      // Save the new user to the database
+      await newUser.save();
+      // Generate JWT token for the new user
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      // Omit password from user data
+      const { password: hashedPassword2, ...rest } = newUser._doc;
+      // Set expiration date for cookie
+      const expiryDate = new Date(Date.now() + 3600000); // 1 hour
+      // Set access_token cookie and respond with user data
+      res
+        .cookie('access_token', token, {
+          httpOnly: true,
+          expires: expiryDate,
+        })
+        .status(200)
+        .json(rest);
+    }
+  } catch (error) {
+    // Handle errors
+    next(error);
+  }
+};

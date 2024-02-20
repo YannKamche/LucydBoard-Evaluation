@@ -6,6 +6,7 @@ import { facebookLogo, googleLogo, profile, lock, icon, man, background } from '
 
 import { signInStart, signInFailure, signInSuccess  } from '../redux/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import OAuth from '../components/OAuth'
 
 const SignUp = () => {
 
@@ -110,8 +111,7 @@ const SignUp = () => {
                 <button disabled={loading} className='login-button max-md:w-1/2 md:w-1/2 cursor-pointer'>
                   {loading ? 'Loading...': 'Sign In'}
                 </button>
-              
-                <button className='button flex justify-center items-center gap-2 disabled:opacity-80'><img src={googleLogo} alt="google" /> Log in with<span className='font-bold'>Google</span></button>
+                <OAuth />
                 <button className='button flex justify-center items-center gap-2'><img src={facebookLogo} alt="facebook" />Log in with <span className='font-bold'>Facebook</span></button>
               </div>
             </form>
