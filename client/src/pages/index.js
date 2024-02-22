@@ -3,6 +3,7 @@ import SignUp from "./SignUp";;
 import AdminDashboard from "./AdminDashboard";
 import UserDashboard from "./UserDashboard"
 import WelcomeLogin from "./WelcomeLogin";
+import Layout from "./Layout";
 
 export {
     SignIn,
@@ -10,4 +11,5 @@ export {
     AdminDashboard,
     UserDashboard,
     WelcomeLogin,
+    Layout
 }
