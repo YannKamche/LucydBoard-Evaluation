@@ -63,8 +63,8 @@ const SignUp = () => {
           
 }
   return (
-     <div className='w-full h-screen flex justify-center items-center p-4'>
-      <div className='flex justify-center items-center flex-row w-full max-w-5xl shadow-2xl rounded-3xl'>
+     <div className='w-full h-screen flex justify-center items-center p-4 '>
+      <div className='flex justify-center items-center flex-row w-full max-w-5xl shadow-2xl rounded-3xl bg-white'>
 
         <div className='flex flex-col items-center justify-center gap-4 max-lg:w-full lg:w-1/2 '>
           {/* Logo */}
@@ -84,7 +84,7 @@ const SignUp = () => {
                 <img src={profile} alt="profile" />
               </div>
               <input 
-              className='input'
+              className='input text-black' 
               type="email"
               name='email'
               id='email'
@@ -98,7 +98,7 @@ const SignUp = () => {
                 <img src={lock} alt="lock" />
               </div>
               <input 
-              className='input'
+              className='input text-black'
               type="password"
               name='password'
               id='password'
@@ -118,11 +118,11 @@ const SignUp = () => {
           </div>
 
 
-          <p className='flex text-sm gap-8'>Dont have an account? <Link to='/sign-up'><span className='font-bold underline'>Sign Up</span></Link></p>
+          <p className='flex text-sm gap-8 text-black'>Dont have an account? <Link to='/sign-up'><span className='font-bold underline'>Sign Up</span></Link></p>
           <p className='text-red-700 mt-5'>{error ? error.message || 'Something went wrong!' : ''}</p>
         </div>
         
-        <div className='hidden lg:flex justify-center items-center w-[500px] h-[570px] -mr-2 relative rounded-br-3xl rounded-tr-3xl' style={{ backgroundImage: `url(${background})`}}>
+        <div className='hidden lg:flex justify-center items-center w-[500px] h-[570px] -mr-3 relative rounded-br-3xl rounded-tr-3xl' style={{ backgroundImage: `url(${background})`}}>
           <div className='relative w-[60%] h-[60%] border-white border bg-color border-solid rounded-[30px]' style={{backgroundColor: '#9889F5'}}>
             <div className='absolute bottom-0 translate-x-10'>
               <img src={women} alt="man" width={600} />
