@@ -57,7 +57,7 @@ const SignUp = () => {
 }
   return (
      <div className='w-full h-screen flex justify-center items-center p-4'>
-     <div className='flex justify-center items-center flex-row w-full  max-w-5xl shadow-2xl rounded-3xl'>
+     <div className='flex justify-center items-center flex-row w-full  max-w-5xl shadow-2xl rounded-3xl bg-white'>
 
       <div className='flex flex-col items-center justify-center gap-2 max-lg:w-full lg:w-1/2 '>
         {/* Logo */}
@@ -77,7 +77,7 @@ const SignUp = () => {
                 <img src={profile} alt="" />
               </div>
               <input 
-              className='input'
+              className='input text-black'
               type="text"
               name='username'
               id='username'
@@ -92,7 +92,7 @@ const SignUp = () => {
                 <img src={profile} alt="profile" />
               </div>
               <input 
-              className='input'
+              className='input text-black'
               type="email"
               name='email'
               id='email'
@@ -106,7 +106,7 @@ const SignUp = () => {
                 <img src={lock} alt="lock" />
               </div>
               <input 
-              className='input'
+              className='input text-black'
               type="password"
               name='password'
               id='password'
@@ -128,7 +128,7 @@ const SignUp = () => {
           </form>
         </div>
 
-        <p className='flex text-sm gap-8'>Have an account already? <Link to='/sign-in'><span className='font-bold underline'>Login</span></Link></p>
+        <p className='flex text-sm gap-8 text-black'>Have an account already? <Link to='/sign-in'><span className='font-bold underline'>Login</span></Link></p>
         <p className='text-red-700 mt-5'>{error && 'Something went wrong'}</p>
       </div>
        
