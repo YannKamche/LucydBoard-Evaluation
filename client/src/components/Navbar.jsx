@@ -16,11 +16,14 @@ import { setMode } from '../redux/dashboard/index'
 
 
 
-const Navbar = () => {
+const Navbar = ({
+    isSidebarOpen,
+    setIsSidebarOpen,
+}) => {
+
     const dispatch = useDispatch();
     const theme = useTheme();
 
-     
   return (
     <AppBar
     sx={{
@@ -32,7 +35,7 @@ const Navbar = () => {
       <Toolbar sx={{ justifyContent: "space-between"}}>
         {/* LeftSide */}
          <FlexBetween>
-            <IconButton onClick={() => console.log("open/close sidebar")}>
+            <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                 <MenuIcon />
             </IconButton> 
             <FlexBetween
@@ -51,7 +54,7 @@ const Navbar = () => {
         </FlexBetween>
 
         {/* RightSide  */}
-        <FlexBetween gap="1.5rem">
+        <FlexBetween gap=".5rem">
             <IconButton onClick={() => dispatch(setMode())}>
                 {theme.palette.mode === 'dark' ? (
                     <DarkModeOutlined sx={{ fontSize: "25px"}} />

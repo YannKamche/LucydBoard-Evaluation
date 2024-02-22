@@ -26,6 +26,7 @@ export const tokensDark = {
     700: "#141937",
     800: "#0d1025",
     900: "#070812",
+    1000: "#4318FF"
   },
   secondary: {
     // yellow
@@ -39,6 +40,7 @@ export const tokensDark = {
     700: "#997d3d",
     800: "#665429",
     900: "#332a14",
+    
   },
 };
 
@@ -103,12 +105,12 @@ export const themeSettings = (mode) => {
             },
             background: {
               default: tokensDark.grey[0],
-              alt: tokensDark.grey[50],
+              alt: tokensDark.grey[0],
             },
           }),
     },
     typography: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
+      fontFamily: ["Poppins", "sans-serif"].join(","),
       fontSize: 12,
       h1: {
         fontFamily: ["Inter", "sans-serif"].join(","),
