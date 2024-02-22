@@ -6,6 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .input {
     background-color: #F0EDFF;
     border-radius: 16px;
