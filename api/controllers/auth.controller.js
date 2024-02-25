@@ -83,9 +83,7 @@ export const google = async (req, res, next) => {
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
       // Create a new user with generated username and email, and hashed password
       const newUser = new User({
-        username:
-          req.body.name.split(' ').join('').toLowerCase() +
-          Math.random().toString(36).slice(-8),
+        username: req.body.name.split(' ').join('').toLowerCase(),
         email: req.body.email,
         password: hashedPassword,
         profilePicture: req.body.photo,

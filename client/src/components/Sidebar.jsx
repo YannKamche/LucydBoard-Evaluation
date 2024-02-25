@@ -36,12 +36,12 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-// import profileImage from "assets/profile.jpeg";
+
 
 import { lucydBLogo } from "../assets";
 const navItems = [
   {
-    text: "admin-Dashboard",
+    text: "Dashboard",
     icon: <HomeOutlined />,
   },
   
@@ -72,6 +72,7 @@ const navItems = [
   },
 ];
 
+
 const Sidebar = ({
   user,
   drawerWidth,
@@ -84,6 +85,7 @@ const Sidebar = ({
   const navigate = useNavigate(); //Use to navigate
   const theme = useTheme();
 
+  console.log(user)
   useEffect(() => {
     setActive(pathname.substring(1));
   }, [pathname]);
@@ -172,13 +174,13 @@ const Sidebar = ({
           </Box>
 
  
-          {/* <Box position="absolute" bottom="2rem">
+          <Box position="absolute" bottom="2rem">
             <Divider />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={user.profilePicture}
                 height="40px"
                 width="40px"
                 borderRadius="50%"
@@ -190,14 +192,14 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  {user.username}
                 </Typography>
-                <Typography
+                {/* <Typography
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
                   {user.occupation}
-                </Typography>
+                </Typography> */}
               </Box>
               <SettingsOutlined
                 sx={{
@@ -206,7 +208,7 @@ const Sidebar = ({
                 }}
               />
             </FlexBetween>
-          </Box> */}
+          </Box>
         </Drawer>
       )}
     </Box>
